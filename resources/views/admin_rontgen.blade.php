@@ -82,7 +82,7 @@
                                                                 <i class="fas fa-pencil-alt"></i>
                                                                 Edit
                                                             </button>
-                                                            <a class="btn btn-danger btn-sm"href="">
+                                                            <a class="btn btn-danger btn-sm" href="">
                                                                 <i class="fas fa-trash">
                                                                 </i>
                                                                 Delete
@@ -103,6 +103,16 @@
                                                   </select>
                                             </div>
                                             <div class="form-group">
+                                                <label>Pasien</label>
+                                                <input type="text" class="form-control" id="kategori" name="kategori"
+                                                    disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>tgl lahir</label>
+                                                <input type="text" class="form-control" id="kategori" name="kategori"
+                                                    disabled>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="exampleInputEmail1">Tanggal Pemeriksaan</label>
                                                 <input type="date" class="form-control" id="kategori" name="kategori"
                                                     required>
@@ -111,6 +121,11 @@
                                                 <label for="exampleInputEmail1">Jenis Pemeriksaan</label>
                                                 <input type="text" class="form-control" id="kategori" name="kategori"
                                                     placeholder="Masukkan Jenis Pemeriksaan" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Detail Rontgen</label>
+                                                <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Hasil Rontgen</label>

@@ -64,73 +64,62 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               
-                                                    <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-warning btn-sm">
-                                                                <a href="{{ route('admin.rontgen.detail')}}">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a>
-                                                            </button>
-                                                            <button type="button" class="btn btn-info btn-sm">
-                                                                <i class="fas fa-pencil-alt"></i>
-                                                                Edit
-                                                            </button>
-                                                            <a class="btn btn-danger btn-sm" href="">
-                                                                <i class="fas fa-trash">
-                                                                </i>
-                                                                Delete
+
+                                                <tr>
+                                                    <td>35153516256287862</td>
+                                                    <td>Samuel Eko</td>
+                                                    <td>29 Januri 2019</td>
+                                                    <td>Cek Tulang</td>
+                                                    <td></td>
+                                                    <td>hhhhhhhhh</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-warning btn-sm">
+                                                            <a href="{{ route('admin.rontgen.detail') }}">
+                                                                <i class="fas fa-eye"></i>
                                                             </a>
-                                                        </td>
-                                                    </tr>
+                                                        </button>
+                                                        <button type="button" class="btn btn-info btn-sm">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                            Edit
+                                                        </button>
+                                                        <a class="btn btn-danger btn-sm" href="">
+                                                            <i class="fas fa-trash">
+                                                            </i>
+                                                            Delete
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                                 </tfoot>
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab-tambah-edit" role="tabpanel"
                                         aria-labelledby="custom-tab-tambah-edit">
-                                        <form action="" method="POST">
+                                        <form action="{{ route('admin.rontgen.storeupdate') }}" method="POST">
                                             @csrf
                                             <div class="form-group">
                                                 <label>ID Pasien</label>
-                                                <select class="form-control select2" style="width: 100%;">
-                                                    <option selected="selected">09-082</option>
-                                                  </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Pasien</label>
-                                                <input type="text" class="form-control" id="kategori" name="kategori"
-                                                    disabled>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>tgl lahir</label>
-                                                <input type="text" class="form-control" id="kategori" name="kategori"
-                                                    disabled>
+                                                <select class="form-control select2" style="width: 100%;" name="idpasien"
+                                                    id="idpasien">
+                                                    <option value="" selected disabled>Pilih Pasien</option>
+                                                    @foreach ($pasien as $item)
+                                                        <option value="{{$item->idpasien}}">{{ $item->idpasien . ' - ' . $item->nama_pasien }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Tanggal Pemeriksaan</label>
-                                                <input type="date" class="form-control" id="kategori" name="kategori"
+                                                <input type="date" class="form-control" id="tgl_pemeriksaan" name="tgl_pemeriksaan"
                                                     required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Jenis Pemeriksaan</label>
-                                                <input type="text" class="form-control" id="kategori" name="kategori"
+                                                <input type="text" class="form-control" id="jenis_pemeriksaan" name="jenis_pemeriksaan"
                                                     placeholder="Masukkan Jenis Pemeriksaan" required>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Detail Rontgen</label>
-                                                <textarea name="" class="form-control" id="" cols="30" rows="10"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Hasil Rontgen</label>
-                                                <input type="file" class="form-control" id="kategori" name="kategori"
-                                                    placeholder="Masukkan Id Pasien" required>
+                                                <textarea name="detail_pemeriksaan" class="form-control" id="detail_pemeriksaan" cols="30" rows="10"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" name="proses" id="proses" value="Tambah"
@@ -153,12 +142,14 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('js')
-<script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-  </script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 @endsection

@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pemeriksaans', function (Blueprint $table) {
-            $table->id('idpemeriksaan');
-            $table->foreign('idpasien')->references('pasiens');
+            $table->bigInteger('idpemeriksaan')->unsigned()->unique()->primary();
+            $table->unsignedBigInteger('idpasien');
+            $table->foreign('idpasien')->references('idpasien')->on('pasiens')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('tgl_pemeriksaan');
             $table->string('jenis_pemeriksaan');
             $table->text('detail_pemeriksaan');
             $table->string('barcode');
-            $table->string('hasilrontgen');
             $table->timestamps();
         });
     }

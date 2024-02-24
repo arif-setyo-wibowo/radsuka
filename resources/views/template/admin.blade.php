@@ -83,7 +83,7 @@
           </li>
           <li class="nav-header">Data</li>
           <li class="nav-item">
-             <a href="{{route('admin.pasien')}}" @if ($title == 'Kategori Kendaraan') class="nav-link active" @else class="nav-link" @endif>
+             <a href="{{route('admin.pasien')}}" @if ($title == 'Pasien') class="nav-link active" @else class="nav-link" @endif>
               <i class="nav-icon fas fa-columns"></i>
               <p>
                 Pasien
@@ -91,7 +91,7 @@
             </a>
           </li>
           <li class="nav-item">
-             <a href="{{ route('admin.rontgen')}}" @if ($title == 'Parkir Inap') class="nav-link active" @else class="nav-link" @endif>
+             <a href="{{ route('admin.rontgen')}}" @if ($title == 'Rontgen') class="nav-link active" @else class="nav-link" @endif>
               <i class="nav-icon fas fa-columns"></i>
               <p>
                 Rontgen

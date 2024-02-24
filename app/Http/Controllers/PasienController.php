@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Pasien;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class PasienController extends Controller
@@ -14,58 +15,39 @@ class PasienController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Pasien'
+            'title' => 'Pasien',
+            'pasien' => Pasien::all(),
         ];
-        return view('pasien',$data);
+        return view('admin_pasien',$data);
     }
 
-   
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function detail(Request $request)
-    {
-        $data = [
-            'title' => 'Pasien'
-        ];
-        return view('pasien_detail_pemeriksaan',$data);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function storeUpdate(Request $request){
+        if ($request->proses == 'Tambah') {
+            $pasien = new Pasien;
+            $pasien->idpasien = $request->idpasien;
+            $pasien->nama_pasien = $request->nama_pasien;
+            $pasien->jenis_kelamin = $request->jenis_kelamin;
+            $pasien->tgl_lahir = $request->tgl_lahir;
+            $pasien->alamat = $request->alamat;
+            $pasien->save();
+            Session::flash('msg', 'Berhasil Menambah Data Pasien');
+            return redirect()->route('admin.pasien');
+        }elseif ($request->proses == 'Update') {
+            $pasien = Pasien::find($request->idpasien);
+            $pasien->nama_pasien = $request->nama_pasien;
+            $pasien->jenis_kelamin = $request->jenis_kelamin;
+            $pasien->tgl_lahir = $request->tgl_lahir;
+            $pasien->alamat = $request->alamat;
+            $pasien->save();
+            Session::flash('msg', 'Berhasil Mengubah Data Pasien');
+            return redirect()->route('admin.pasien');
+        }
     }
 
     /**
@@ -74,8 +56,11 @@ class PasienController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request){
+        $id = $request->query('id');
+        $pasien = Pasien::find($id);
+        $pasien->delete();
+        Session::flash('msg', 'Berhasil Menghapus Data Pasien');
+        return redirect()->route('admin.pasien');
     }
 }

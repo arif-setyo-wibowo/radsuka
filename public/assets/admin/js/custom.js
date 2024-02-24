@@ -4,19 +4,23 @@ setTimeout(function() {
 }, 3000);
 
 // Edit Kategori
-function editKategori(id, kategori, harga) {
+function editPasien(id, nama, jk, tgl, alamat) {
     $('[href="#tab-tambah-edit"]').tab("show");
-    $("#idkategori").val(id);
-    $("#kategori").val(kategori);
-    $("#harga").val(harga);
+    $("#idpasien").val(id).prop('readonly', true);
+    $("#nama_pasien").val(nama);
+    $("#jenis_kelamin").val(jk);
+    $("#tgl_lahir").val(tgl);
+    $("#alamat").val(alamat);
     $("#proses").val("Update");
 }
 
 // Hapus Value Kategori
 $("#custom-tab-tambah-edit").on("click", function() {
-    $("#idkategori").val("");
-    $("#kategori").val("");
-    $("#harga").val("");
+    $("#idpasien").val("").prop('readonly', false);
+    $("#nama_pasien").val("");
+    $("#jenis_kelamin").val("");
+    $("#tgl_lahir").val("");
+    $("#alamat").val("");
     $("#proses").val("Tambah");
 });
 

@@ -23,31 +23,29 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
+      @if ($errors->any())
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              @foreach ($errors->all() as $error)
+                  <i class="bi bi-exclamation-octagon me-1"> {{ $error }} </i><br>
+              @endforeach
+          </div>
+      @endif
+      <form method="POST" action="{{ url()->current()}}">
+          @csrf
+          <!-- ... -->
+          <div class="input-group mb-3">
+              <input type="text" class="form-control" name="username" placeholder="username">
+              <!-- ... -->
+          </div>
+          <div class="input-group mb-3">
+              <input type="password" class="form-control" name="password" placeholder="Password">
+              <!-- ... -->
+          </div>
 
-      <form action="{{ asset('assets/admin/')}}/index3.html" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
+          <div class="u-s-m-b-45">
+              <button type="submit" class="btn btn-primary w-100">Login</button>
           </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
+
       </form>
 
       

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\RontgenController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,28 +19,51 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',  [HomeController::class, 'index'])->name('home');
-Route::get('/login',  [LoginController::class, 'index'])->name('login');
-
-
-Route::get('/pasien',  [PasienController::class, 'index'])->name('pasien');
-Route::get('/detail-pemeriksaan',  [PasienController::class, 'detail'])->name('detail.pemeriksaan');
-
-Route::get('/admin',  [AdminController::class, 'index'])->name('dashboard');
-
-Route::controller(PasienController::class)->prefix('/admin/pasien')->group(function () {
-    Route::get('/', 'index')->name('admin.pasien');
-    Route::post('/', 'storeUpdate')->name('admin.pasien.storeupdate');
-    Route::get('/delete', 'destroy')->name('admin.pasien.delete');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name('home');
+    Route::post('/', 'postlogin')->name('loginpasien');
+});
+Route::controller(LoginController::class)->prefix('login')->group(function () {
+    Route::get('/', 'index')->name('login');
+    Route::post('/', 'postlogin')->name('postlogin');
 });
 
-Route::controller(RontgenController::class)->prefix('/admin/rontgen')->group(function () {
-    Route::get('/', 'index')->name('admin.rontgen');
-    Route::post('/', 'storeUpdate')->name('admin.rontgen.storeupdate');
-    Route::get('/detail', 'show')->name('admin.rontgen.detail');
-    Route::get('/delete', 'destroy')->name('admin.rontgen.delete');
+
+
+Route::middleware('pasien')->group(function () {
+
+    Route::get('logout-pasien', [HomeController::class, 'logout'])->name('logout.pasien');
+
+    Route::get('/pasien',  [HomeController::class, 'pasien'])->name('pasien');
+    Route::get('/detail-pemeriksaan',  [HomeController::class, 'detail'])->name('detail.pemeriksaan');
 });
 
-// Route::get('/admin/rontgen',  [AdminController::class, 'rontgen'])->name('admin.rontgen');
-// Route::get('/admin/rontgen/detail',  [AdminController::class, 'rontgen_detail'])->name('admin.rontgen.detail');
-Route::get('/admin/petugas',  [AdminController::class, 'petugas'])->name('admin.petugas');
+Route::middleware('petugas')->group(function () {
+
+    Route::get('/admin',  [AdminController::class, 'index'])->name('dashboard');
+
+    Route::controller(PasienController::class)->prefix('/admin/pasien')->group(function () {
+        Route::get('/', 'index')->name('admin.pasien');
+        Route::post('/', 'storeUpdate')->name('admin.pasien.storeupdate');
+        Route::get('/delete', 'destroy')->name('admin.pasien.delete');
+    });
+
+    Route::controller(RontgenController::class)->prefix('/admin/rontgen')->group(function () {
+        Route::get('/', 'index')->name('admin.rontgen');
+        Route::post('/', 'storeUpdate')->name('admin.rontgen.storeupdate');
+        Route::get('/detail', 'show')->name('admin.rontgen.detail');
+        Route::get('/delete', 'destroy')->name('admin.rontgen.delete');
+    });
+
+    // Route::get('/admin/rontgen',  [AdminController::class, 'rontgen'])->name('admin.rontgen');
+    // Route::get('/admin/rontgen/detail',  [AdminController::class, 'rontgen_detail'])->name('admin.rontgen.detail');
+    // Route::get('/admin/petugas',  [PetugasController::class, 'index'])->name('admin.petugas');
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    
+    Route::controller(PetugasController::class)->prefix('/admin/petugas')->group(function () {
+        Route::get('/', 'index')->name('admin.petugas');
+        Route::post('/', 'storeUpdate')->name('petugas.store.update');
+        Route::get('/delete', 'destroy')->name('delete.petugas');
+    });
+
+});

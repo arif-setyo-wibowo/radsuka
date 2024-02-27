@@ -49,19 +49,6 @@ class AdminController extends Controller
         return view('admin_rontgen_detail',$data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function petugas()
-    {
-        $data = [
-            'title' => 'Petugas'
-        ];
-        return view('admin_Petugas',$data);
-    }
 
     /**
      * Display the specified resource.

@@ -25,7 +25,7 @@ $("#custom-tab-tambah-edit").on("click", function() {
 });
 
 // Edit Pengguna
-function editPengguna(id, nama, username, password) {
+function editPetugas(id, nama, username, password) {
     $('[href="#tab-tambah-edit"]').tab("show");
     $("#id").val(id);
     $("#nama").val(nama);
@@ -36,13 +36,13 @@ function editPengguna(id, nama, username, password) {
     $("#proses").val("Update");
 }
 
-// Tambah Value Pengguna
+// Tambah Value Petugas
 $("#tambah-edit-tab").on("click", function() {
-    $("#idpengguna").val("");
+    $("#id").val("");
     $("#nama").val("");
     $("#username").val("");
     $("#email").val("");
-    $("#level").val("User");
+    $("#level").val("Petugas");
     $("#notifPassword").empty();
     $("#password").prop("required", true);
     $("#proses").val("Tambah");

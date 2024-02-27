@@ -29,19 +29,28 @@ height: 100%;" >
         <div class="row">
           <div class="col-lg-6">
             <div class="card" style="background: rgba(255, 255, 255, 0.1); ">
+              @if ($errors->any())
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      @foreach ($errors->all() as $error)
+                          <i class="bi bi-exclamation-octagon me-1"> {{ $error }} </i><br>
+                      @endforeach
+                  </div>
+              @endif
               <div class="card-body">
-          
+              <form action="{{ route('loginpasien')}}" method="POST">
+                @csrf
                   <div class="form-group">
                       <label for="exampleInputEmail1" class="text-white" style="text-shadow: 3px 2px 1px grey;
                       font-size: 15px;">Id Pasien</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Masukkan ID Pasien">
+                      <input type="text" class="form-control" name="idpasien" id="exampleInputEmail1" placeholder="Masukkan ID Pasien">
                   </div>
                   <div class="form-group">
                       <label for="exampleInputPassword1" class="text-white" style="text-shadow: 3px 2px 1px grey;
                       font-size: 15px;">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
               </div>
           </div>
           

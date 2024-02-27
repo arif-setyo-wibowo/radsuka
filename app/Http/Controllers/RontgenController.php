@@ -33,7 +33,6 @@ class RontgenController extends Controller
     public function storeUpdate(Request $request){
         if ($request->proses == 'Tambah') {
             $pemeriksaan = new Pemeriksaan;
-            $pemeriksaan->idpemeriksaan = Uuid::uuid4();
             $pemeriksaan->idpasien = $request->idpasien;
             $pemeriksaan->tgl_pemeriksaan = $request->tgl_pemeriksaan;
             $pemeriksaan->jenis_pemeriksaan = $request->jenis_pemeriksaan;
@@ -47,7 +46,7 @@ class RontgenController extends Controller
             $pemeriksaan->tgl_pemeriksaan = $request->tgl_pemeriksaan;
             $pemeriksaan->jenis_pemeriksaan = $request->jenis_pemeriksaan;
             $pemeriksaan->detail_pemeriksaan = $request->detail_pemeriksaan;
-            $pasien->save();
+            $pemeriksaan->save();
             Session::flash('msg', 'Berhasil Mengubah Data Pemeriksaan');
             return redirect()->route('admin.rontgen');
         }

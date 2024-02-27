@@ -69,6 +69,7 @@
       <!-- Sidebar user panel (optional) -->
 
       <!-- Sidebar Menu -->
+      @if (Session::get('admin') == true)
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
@@ -116,7 +117,7 @@
        </li>
          
         <li class="nav-item">
-          <a href="" @if ($title == 'Logout') class="nav-link active" @else class="nav-link" @endif>
+          <a href="{{ route('logout')}}" @if ($title == 'Logout') class="nav-link active" @else class="nav-link" @endif>
            <i class="nav-icon fas fa-user"></i>
            <p>
              Logout
@@ -125,6 +126,30 @@
        </li>
         </ul>
       </nav>
+      @elseif((Session::get('pasien') == true))
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{{ route('pasien')}}" @if ($title == 'Parkir Inap') class="nav-link active" @else class="nav-link" @endif>
+             <i class="nav-icon fas fa-columns"></i>
+             <p>
+               Hasil Pemeriksaan
+             </p>
+           </a>
+         </li>
+         
+        <li class="nav-item">
+          <a href="{{ route('logout.pasien')}}" @if ($title == 'Logout') class="nav-link active" @else class="nav-link" @endif>
+           <i class="nav-icon fas fa-user"></i>
+           <p>
+             Logout
+           </p>
+         </a>
+       </li>
+        </ul>
+      </nav>
+      @endif
+      
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

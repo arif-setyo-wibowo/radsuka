@@ -72,32 +72,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                       
+                                            @foreach ($petugas as $item)
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->username }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
-                                                           >
+                                                            onclick="editPetugas('{{ $item->id }}','{{ $item->nama }}','{{ $item->username }}','{{ $item->password }}')">
                                                             <i class="fas fa-pencil-alt"></i>
                                                             Edit
                                                         </button>
                                                         <a class="btn btn-danger btn-sm"
-                                                           >
+                                                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Petugas?')"
+                                                        href="{{ route('delete.petugas', ['id' => $item->id]) }}">
                                                             <i class="fas fa-trash">
                                                             </i>
                                                             Delete
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            
-                                            </tfoot>
+                                                @endforeach
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="tab-tambah-edit" role="tabpanel"
                                     aria-labelledby="custom-tab-tambah-edit">
-                                    <form action="" method="POST">
+                                    <form action="{{ route('petugas.store.update') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Nama</label>

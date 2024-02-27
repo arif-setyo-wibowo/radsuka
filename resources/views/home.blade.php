@@ -3,14 +3,20 @@
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper" style="background-image: url({{asset('assets/')}}/img/bghs.jpg)">
+<div class="content-wrapper" style="background-image: url({{asset('assets/')}}/img/bghs1.jpg);   background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+background-attachment: fixed;
+height: 100%;" >
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class=" mb-0 text-white">Lihat Hasil Rontgen dengan Lebih Mudah</h1>
-            <p class="lead fs-lg lh-sm mb-7 pe-xl-10">Pelayanan hasil pemeriksaan dari RSUD Arosuka</p>
+            <h1 class=" mb-0 text-white" style="text-shadow: 3px 2px 1px grey;
+            font-size: 40px;">Lihat Hasil Rontgen, CT-Scan, dan USG dengan Lebih Mudah</h1>
+            <p class="lead fs-lg lh-sm mb-7 pe-xl-10 text-white" style="text-shadow: 3px 2px 1px grey;
+            font-size: 24px;">Pelayanan hasil pemeriksaan dari RSUD Arosuka</p>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -24,14 +30,15 @@
           <div class="col-lg-6">
             <div class="card" style="background: rgba(255, 255, 255, 0.1); ">
               <div class="card-body">
-                  <h5 class="card-title">Silahkan Masuk Pasien Radsuka</h5><br><br>
           
                   <div class="form-group">
-                      <label for="exampleInputEmail1" class="text-white">Id Pasien</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Masukkan ID">
+                      <label for="exampleInputEmail1" class="text-white" style="text-shadow: 3px 2px 1px grey;
+                      font-size: 15px;">Id Pasien</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Masukkan ID Pasien">
                   </div>
                   <div class="form-group">
-                      <label for="exampleInputPassword1" class="text-white">Password</label>
+                      <label for="exampleInputPassword1" class="text-white" style="text-shadow: 3px 2px 1px grey;
+                      font-size: 15px;">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -40,7 +47,7 @@
           
           </div>
           <!-- /.col-md-6 -->
-          <div class="col-lg-6">
+          {{-- <div class="col-lg-6">
             <div class="card" style="background: rgba(255, 255, 255, 0.1); ">
               <div class="card-header">
                 <h5 class="card-title m-0">Scan Qr</h5>
@@ -52,7 +59,7 @@
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
-          </div>
+          </div> --}}
           <!-- /.col-md-6 -->
         </div>
         <!-- /.row -->

@@ -54,42 +54,44 @@
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Id Pasien</th>
+                                                    <th>ID Pasien</th>
                                                     <th>Pasien</th>
                                                     <th>Tanggal Pemeriksaan</th>
                                                     <th>Jenis Pemeriksaan</th>
                                                     <th>Barcode</th>
-                                                    <th>Hasil Rontgen</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                <tr>
-                                                    <td>35153516256287862</td>
-                                                    <td>Samuel Eko</td>
-                                                    <td>29 Januri 2019</td>
-                                                    <td>Cek Tulang</td>
-                                                    <td></td>
-                                                    <td>hhhhhhhhh</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-warning btn-sm">
-                                                            <a href="{{ route('admin.rontgen.detail') }}">
-                                                                <i class="fas fa-eye"></i>
+                                                @foreach ($rontgen as $item)
+                                                    <tr>
+                                                        <td>{{ $item->idpasien }}</td>
+                                                        <td>{{ $item->idpasien }}</td>
+                                                        <td>{{ strftime('%d %B %Y', strtotime($item->tgl_pemeriksaan)) }}</td>
+                                                        <td>{{ $item->jenis_pemeriksaan }}</td>
+                                                        <td><?= '<img src="data:image/png;base64,' .
+                                                        DNS2D::getBarcodePNG('4', 'QRCODE', 5, 5) . '" alt="barcode" />' ?>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning btn-sm">
+                                                                <a href="<?= route('admin.rontgen.detail', ['id' => $item->idpemeriksaan]) ?>">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </a>
+                                                            </button>
+                                                            <?= $item ?>
+                                                            <button type="button" class="btn btn-info btn-sm">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                                Edit
+                                                            </button>
+                                                                <a class="btn btn-danger btn-sm"
+                                                                        onclick="return confirm('Apakah Anda Yakin Ingin Check Out dengan biaya parkir sebesar R Kendaraan Ini?')"
+                                                                        href="{{ route('admin.rontgen.detail', ['id' => $item->idpemeriksaan]) }}">
+                                                                        Delete
                                                             </a>
-                                                        </button>
-                                                        <button type="button" class="btn btn-info btn-sm">
-                                                            <i class="fas fa-pencil-alt"></i>
-                                                            Edit
-                                                        </button>
-                                                        <a class="btn btn-danger btn-sm" href="">
-                                                            <i class="fas fa-trash">
-                                                            </i>
-                                                            Delete
-                                                        </a>
-                                                    </td>
+                                                        </td>
+                                                @endforeach
                                                 </tr>
-                                                </tfoot>
+                                            </tbody>
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="tab-tambah-edit" role="tabpanel"
@@ -102,19 +104,21 @@
                                                     id="idpasien">
                                                     <option value="" selected disabled>Pilih Pasien</option>
                                                     @foreach ($pasien as $item)
-                                                        <option value="{{$item->idpasien}}">{{ $item->idpasien . ' - ' . $item->nama_pasien }}</option>
+                                                        <option value="{{ $item->idpasien }}">
+                                                            {{ $item->idpasien . ' - ' . $item->nama_pasien }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Tanggal Pemeriksaan</label>
-                                                <input type="date" class="form-control" id="tgl_pemeriksaan" name="tgl_pemeriksaan"
-                                                    required>
+                                                <input type="date" class="form-control" id="tgl_pemeriksaan"
+                                                    name="tgl_pemeriksaan" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Jenis Pemeriksaan</label>
-                                                <input type="text" class="form-control" id="jenis_pemeriksaan" name="jenis_pemeriksaan"
-                                                    placeholder="Masukkan Jenis Pemeriksaan" required>
+                                                <input type="text" class="form-control" id="jenis_pemeriksaan"
+                                                    name="jenis_pemeriksaan" placeholder="Masukkan Jenis Pemeriksaan"
+                                                    required>
                                             </div>
 
                                             <div class="form-group">

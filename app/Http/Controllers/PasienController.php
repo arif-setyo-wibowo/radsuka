@@ -5,6 +5,7 @@ use App\Models\Pasien;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PasienController extends Controller
 {
@@ -39,6 +40,7 @@ class PasienController extends Controller
             $pasien->jenis_kelamin = $request->jenis_kelamin;
             $pasien->tgl_lahir = $request->tgl_lahir;
             $pasien->alamat = $request->alamat;
+            $pasien->token = Str::random(60);
             $datepasien = date('dmY', strtotime($request->tgl_lahir));
             $pasien->password =  Hash::make(str_replace('-', '', $datepasien));
             $pasien->save();

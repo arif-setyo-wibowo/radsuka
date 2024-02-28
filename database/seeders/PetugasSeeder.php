@@ -18,7 +18,7 @@ class PetugasSeeder extends Seeder
                 ['id' => '1',
                 'nama' => 'Admin',
                 'username' => 'admin',
-                'password' => '$2y$12$kCL/6x3/m219sovBkbKRpOlG5RJmOUVBi5mNuGui2MGcWZT2xncay',
+                'password' => '$2a$12$Pxwcb6FyEYljhgAB36j6rOqjHHNUHEulSUi3/GA45WyJDMg4fxpVK',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
                 ]

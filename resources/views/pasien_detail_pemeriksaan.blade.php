@@ -49,24 +49,33 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td>No MR</td>
+                                                    <td>{{ $rontgen[0]->idpemeriksaan }}</td>
+                                                </tr>
+                                                <tr>
                                                     <td>Id Pasien</td>
-                                                    <td>09-0982</td>
+                                                    <td>{{ $rontgen[0]->idpasien }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Pasien</td>
-                                                    <td>Rudi</td>
+                                                    <td>{{ $rontgen[0]->pasien->nama_pasien }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Tanggal Pemeriksaan</td>
-                                                    <td>5 Maret 2023 13:14:00</td>
+                                                    <td>{{ strftime('%d %B %Y', strtotime($rontgen[0]->tgl_pemeriksaan)) }}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Jenis Pemeriksaan</td>
-                                                    <td>Encok</td>
+                                                    <td>{{ $rontgen[0]->jenis_pemeriksaan }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Hasil Rontgen</td>
-                                                    <td><img src="" alt=""></td>
+                                                    <td>
+                                                        @foreach (explode(',', $rontgen[0]->foto_rontgen) as $image)
+                                                            <img width="150" src="{{ asset('storage/images/' . trim($image)) }}" alt="Image">
+                                                        @endforeach
+                                                    </td>
                                                 </tr>
                                         </table>
 

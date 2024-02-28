@@ -13,5 +13,8 @@ class Pemeriksaan extends Model
     protected $table = 'pemeriksaans';
     protected $primaryKey = 'idpemeriksaan';
 
-    
+    public function pasien(): BelongsTo
+    {
+        return $this->belongsTo(Pasien::class,'idpasien','idpasien');
+    }
 }

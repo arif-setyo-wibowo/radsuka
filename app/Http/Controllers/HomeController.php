@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\Pemeriksaan;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -50,16 +52,37 @@ class HomeController extends Controller
 
     function pasien(){
         $data = [
-            'title' => 'Petugas'
+            'title' => 'Petugas',
+            'hasil' => Pemeriksaan::where('idpasien', Session::get('pasien.idpasien'))->get()
         ];
         return view('pasien',$data);
     }
 
-    function detail(){
-        $data = [
-            'title' => 'Petugas'
-        ];
-        return view('pasien_detail_pemeriksaan',$data);
+    function detail(Request $request){
+        $id = $request->query('id');
+        $token = $request->query('token');
+        
+        if (!$token) {
+            $data = [
+                'title' => 'Petugas',
+                'rontgen' => Pemeriksaan::with('pasien')->where('idpemeriksaan', $id)->get()
+            ];
+
+            if ($data['rontgen'][0]['idpasien'] != Session::get('pasien.idpasien')) {
+                return redirect()->route('pasien');
+            }else{
+                return view('pasien_detail_pemeriksaan',$data);
+            }
+        }else{
+            $pasien = Pasien::where('token', $token)->first();
+            session(['pasien' => true]);
+            session(['pasien.nama' => $pasien->nama_pasien]);
+            session(['pasien.idpasien' => $pasien->idpasien]);    
+            session(['pasien.tgl_lahir' => $pasien->tgl_lahir]);
+            session(['pasien.alamat' => $pasien->alamat]);    
+            session(['pasien.jenis_k' => $pasien->jenis_kelamin]);                              
+            return redirect()->route('detail.pemeriksaan', ['id' => $id]);
+        }
     }
 
     public function logout (){

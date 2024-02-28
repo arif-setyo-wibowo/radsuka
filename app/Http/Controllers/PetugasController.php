@@ -117,8 +117,11 @@ class PetugasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request){
+        $id = $request->query('id');
+        $petugas = Petugas::find($id);
+        $petugas->delete();
+        Session::flash('msg', 'Berhasil Menghapus Data Petugas');
+        return redirect()->route('admin.petugas');
     }
 }

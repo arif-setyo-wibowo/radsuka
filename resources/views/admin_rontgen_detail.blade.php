@@ -46,7 +46,7 @@
                                 <div class="tab-content" id="custom-tabs-three-tabContent">
                                     <div class="tab-pane fade show active" id="tab-kategori" role="tabpanel"
                                         aria-labelledby="custom-tab-kategori">
-                                        <table  class="table table-bordered table-striped">
+                                        <table class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th style="width: 10px;">#</th>
@@ -55,32 +55,37 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
+                                                    <td>No MR</td>
+                                                    <td>{{ $rontgen[0]->idpemeriksaan }}</td>
+                                                </tr>
+                                                <tr>
                                                     <td>Id Pasien</td>
-                                                    <td>09-0982</td>
+                                                    <td>{{ $rontgen[0]->idpasien }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Pasien</td>
-                                                    <td>Rudi</td>
+                                                    <td>{{ $rontgen[0]->pasien->nama_pasien }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Tanggal Pemeriksaan</td>
-                                                    <td>5 Maret 2023 13:14:00</td>
+                                                    <td>{{ strftime('%d %B %Y', strtotime($rontgen[0]->tgl_pemeriksaan)) }}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Jenis Pemeriksaan</td>
-                                                    <td>Encok</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Barcode</td>
-                                                    <td><img src="" alt=""></td>
+                                                    <td>{{ $rontgen[0]->jenis_pemeriksaan }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Hasil Rontgen</td>
-                                                    <td><img src="" alt=""></td>
+                                                    <td>
+                                                        @foreach (explode(',', $rontgen[0]->foto_rontgen) as $image)
+                                                            <img width="150" src="{{ asset('storage/images/' . trim($image)) }}" alt="Image">
+                                                        @endforeach
+                                                    </td>
                                                 </tr>
                                         </table>
 
-                                        <a href="{{ route('admin.rontgen')}}">
+                                        <a href="{{ route('admin.rontgen') }}">
                                             <button type="button" class="btn btn-success">Kembali</button>
                                         </a>
                                     </div>
@@ -99,13 +104,15 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('js')
-<script src="{{ asset('assets/admin') }}/assets/js/custom/kategori.js"></script>
-<script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-  </script>
+    <script src="{{ asset('assets/admin') }}/assets/js/custom/kategori.js"></script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 @endsection

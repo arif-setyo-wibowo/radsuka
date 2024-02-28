@@ -17,9 +17,10 @@ return new class extends Migration
             $table->bigInteger('idpasien')->unsigned()->unique()->primary();
             $table->string('nama_pasien');
             $table->string('jenis_kelamin');
-            $table->string('tgl_lahir');
+            $table->date('tgl_lahir');
             $table->string('password');
             $table->string('alamat');
+            $table->string('token');
             $table->timestamps();
         });
     }

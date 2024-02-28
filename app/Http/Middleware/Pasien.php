@@ -15,6 +15,13 @@ class Pasien
      */
     public function handle(Request $request, Closure $next): Response
     {
+
+        $token = $request->query('token');
+
+        if ($token) {
+            return $next($request);
+        }
+
         if(session()->has('pasien')){
             return $next($request);
         }

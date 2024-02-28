@@ -37,11 +37,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ Session::get('pasien.idpasien')}}</td>
-                                            <td>{{ Session::get('pasien.nama')}}</td>
-                                            <td>{{ Session::get('pasien.tgl_lahir')}}</td>
-                                            <td>{{ Session::get('pasien.alamat')}}</td>
-                                            <td>{{ Session::get('pasien.jenis_k')}}</td>
+                                            <td>{{ Session::get('pasien.idpasien') }}</td>
+                                            <td>{{ Session::get('pasien.nama') }}</td>
+                                            <td>{{ Session::get('pasien.tgl_lahir') }}</td>
+                                            <td>{{ Session::get('pasien.alamat') }}</td>
+                                            <td>{{ Session::get('pasien.jenis_k') }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -52,38 +52,37 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable with default features</h3>
+                                <h3 class="card-title">Hasil Pemeriksaan</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Id Pasien</th>
-                                            <th>Pasien</th>
+                                            <th>No MR</th>
                                             <th>Tanggal Pemeriksaan</th>
                                             <th>Jenis Pemeriksaan</th>
-                                            <th>Hasil Rontgen</th>
+                                            <th>Detail Pemeriksaan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       
+                                        @foreach ($hasil as $item)
                                             <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+                                                <td>{{$item->idpemeriksaan}}</td>
+                                                <td>{{ strftime('%d %B %Y', strtotime($item->tgl_pemeriksaan)) }}</td>
+                                                <td>{{$item->jenis_pemeriksaan}}</td>
+                                                <td>{{$item->detail_pemeriksaan}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-warning btn-sm">
-                                                        <a href="{{ route('detail.pemeriksaan')}}">
+                                                        <a href="<?= route('detail.pemeriksaan', ['id' => $item->idpemeriksaan]) ?>">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
                                                     </button>
                                                 </td>
                                             </tr>
-                                        </tfoot>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -101,13 +100,14 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('js')
-<script src="{{ asset('assets/admin') }}/assets/js/custom/kategori.js"></script>
-<script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    });
-  </script>
+    <script src="{{ asset('assets/admin') }}/assets/js/custom/kategori.js"></script>
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,7 +15,8 @@ class AdminController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Admin'
+            'title' => 'Admin',
+            'totalPasien' => Pasien::count(),
         ];
         return view('admin_home',$data);
     }

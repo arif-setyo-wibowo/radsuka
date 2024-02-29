@@ -27,6 +27,16 @@
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ $totalPasien}}</h3>
+
+                <p>Jumlah Pasien</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user"></i>
+              </div>
+            </div>
           </div>
           
           <!-- ./col -->

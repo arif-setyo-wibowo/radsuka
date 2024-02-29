@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Radsuka | {{ $title }}</title>
+  <title>SUKA DUDA | {{ $title }}</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -61,7 +61,7 @@
     <!-- Brand Logo -->
     <a href="/" class="brand-link">
       <img src="{{ asset('assets/admin/') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Radsuka</span>
+      <span class="brand-text font-weight-light">SUKA DUDA</span>
     </a>
 
     <!-- Sidebar -->
@@ -99,14 +99,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('pasien')}}" @if ($title == 'Parkir Inap') class="nav-link active" @else class="nav-link" @endif>
-             <i class="nav-icon fas fa-columns"></i>
-             <p>
-               Hasil Pemeriksaan
-             </p>
-           </a>
-         </li>
          <li class="nav-item">
           <a href="{{ route('admin.petugas')}}" @if ($title == 'Parkir Inap') class="nav-link active" @else class="nav-link" @endif>
            <i class="nav-icon fas fa-columns"></i>

@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ asset('assets/admin/')}}/index2.html"><b>Radsuka</a>
+    <a href="{{ asset('assets/admin/')}}/index2.html"><b>SUKA DUDA</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">

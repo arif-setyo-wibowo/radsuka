@@ -55,10 +55,6 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>No MR</td>
-                                                    <td>{{ $rontgen[0]->idpemeriksaan }}</td>
-                                                </tr>
-                                                <tr>
                                                     <td>Id Pasien</td>
                                                     <td>{{ $rontgen[0]->idpasien }}</td>
                                                 </tr>
@@ -79,9 +75,21 @@
                                                     <td>Hasil Rontgen</td>
                                                     <td>
                                                         @foreach (explode(',', $rontgen[0]->foto_rontgen) as $image)
-                                                        <a href="{{ asset('storage/images/' . trim($image)) }}" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                                                            <img width="150px "src="{{ asset('storage/images/' . trim($image)) }}" class="img-fluid mb-2" alt="white sample" />
-                                                        </a>
+                                                            <a href="{{ asset('storage/images/' . trim($image)) }}"
+                                                                data-toggle="lightbox" data-title="sample 1 - white"
+                                                                data-gallery="gallery">
+                                                                <img width="150px "src="{{ asset('storage/images/' . trim($image)) }}"
+                                                                    class="img-fluid mb-2" alt="white sample" />
+                                                            </a>
+                                                        @endforeach
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dokumen</td>
+                                                    <td>
+                                                        @foreach (explode(',', $rontgen[0]->dokumen) as $doc)
+                                                            <a href="{{ asset('storage/dokumen/' . trim($doc)) }}"
+                                                                download>Download</a>
                                                         @endforeach
                                                     </td>
                                                 </tr>

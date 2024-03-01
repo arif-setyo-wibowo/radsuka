@@ -110,8 +110,7 @@
                                             enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">No MR</label>
-                                                <input type="number" class="form-control" id="idpemeriksaan"
+                                                <input type="hidden" class="form-control" id="idpemeriksaan"
                                                     name="idpemeriksaan" placeholder="Masukkan No MR" required>
                                             </div>
                                             <div class="form-group">
@@ -154,9 +153,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">File Pdf</label>
-                                                <input type="file" name="images[]" id="foto_rontgen"
+                                                <input type="file" name="dokumen[]" id="dokumen"
                                                     class="form-control" multiple >
-                                                <span class="text-danger" id="notifPassword"></span>
+                                                <span class="text-danger" id="notifdokumen"></span>
                                             </div>
                                             <div class="form-group">
                                                 <input type="submit" name="proses" id="proses" value="Tambah"

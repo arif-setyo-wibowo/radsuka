@@ -35,6 +35,7 @@ class RontgenController extends Controller
     public function storeUpdate(Request $request){
         if ($request->proses == 'Tambah') {
             $foto = [];
+            $document = [];
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
@@ -43,12 +44,22 @@ class RontgenController extends Controller
                 }
             }
 
+            if ($request->hasFile('dokumen')) {
+                foreach ($request->file('dokumen') as $doc) {
+                    $docName = Str::random(20) . '.' . $doc->getClientOriginalExtension();
+                    $doc->storeAs('public/dokumen', $docName);
+                    $document[] = $docName;
+                }
+            }
+
             $pemeriksaan = new Pemeriksaan;
+            $pemeriksaan->idpemeriksaan = time();
             $pemeriksaan->idpasien = $request->idpasien;
             $pemeriksaan->tgl_pemeriksaan = $request->tgl_pemeriksaan;
             $pemeriksaan->jenis_pemeriksaan = $request->jenis_pemeriksaan;
             $pemeriksaan->detail_pemeriksaan = $request->detail_pemeriksaan;
             $pemeriksaan->foto_rontgen = implode(',', $foto);
+            $pemeriksaan->dokumen = implode(',', $document);
             $pemeriksaan->save();
             Session::flash('msg', 'Berhasil Menambah Data Pemeriksaan');
             return redirect()->route('admin.rontgen');
@@ -58,6 +69,7 @@ class RontgenController extends Controller
             $pemeriksaan->jenis_pemeriksaan = $request->jenis_pemeriksaan;
             $pemeriksaan->detail_pemeriksaan = $request->detail_pemeriksaan;
             $foto = [];
+            $document = [];
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $imageName = Str::random(20) . '.' . $image->getClientOriginalExtension();
@@ -65,6 +77,15 @@ class RontgenController extends Controller
                     $foto[] = $imageName;
                 }
                 $pemeriksaan->foto_rontgen = implode(',', $foto);
+            }
+
+            if ($request->hasFile('dokumen')) {
+                foreach ($request->file('dokumen') as $doc) {
+                    $docName = Str::random(20) . '.' . $doc->getClientOriginalExtension();
+                    $doc->storeAs('public/dokumen', $docName);
+                    $document[] = $docName;
+                }
+                $pemeriksaan->dokumen = implode(',', $document);
             }
             $pemeriksaan->save();
             Session::flash('msg', 'Berhasil Mengubah Data Pemeriksaan');

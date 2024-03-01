@@ -60,6 +60,7 @@ function editRontgen(no, id_pasien, tgl, jenis, detail,nama) {
     $("#jenis_pemeriksaan").val(jenis);
     $("#detail_pemeriksaan").val(detail);
     $("#notifPassword").text("*Kosongkan Jika Tidak Ingin Merubah Gambar");
+    $("#notifdokumen").text("*Kosongkan Jika Tidak Ingin Merubah Dokumen");
     $("#foto_rontgen").removeAttr("required");
     $("#proses").val("Update");
 };
@@ -74,5 +75,6 @@ $("#custom-tab-tambah-edit").on("click", function() {
     $("#detail_pemeriksaan").val("");
     $("#foto_rontgen").prop("required", true);
     $("#notifPassword").empty();
+    $("#notifdokumen").empty();
     $("#proses").val("Tambah");
 });

@@ -11,7 +11,7 @@ class Pemeriksaan extends Model
 {
     use HasFactory;
     protected $table = 'pemeriksaans';
-    protected $primaryKey = 'idpemeriksaan';
+    public $primaryKey = 'idpemeriksaan';
 
     public function pasien(): BelongsTo
     {

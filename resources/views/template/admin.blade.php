@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="{{ asset('assets/admin/') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('assets/admin/') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="{{ asset('assets/admin/') }}/plugins/ekko-lightbox/ekko-lightbox.css">
   <!-- dropzonejs -->
   <link rel="stylesheet" href="{{ asset('assets/admin/') }}/plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
@@ -191,7 +193,8 @@
 <script src="{{ asset('assets/admin/') }}/dist/js/adminlte.js"></script>
 <!-- Select2 -->
 <script src="{{ asset('assets/admin/') }}/plugins/select2/js/select2.full.min.js"></script>
-
+<!-- Ekko Lightbox -->
+<script src="{{ asset('assets/admin/') }}/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <script src="{{ asset('assets/admin/') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('assets/admin/') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('assets/admin/') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
@@ -206,11 +209,31 @@
 <script src="{{ asset('assets/admin/') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="{{ asset('assets/admin') }}/js/custom.js"></script>
 
+<!-- Filterizr-->
+<script src="{{ asset('assets/admin') }}/plugins/filterizr/jquery.filterizr.min.js"></script>
+
 <script>
 $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
 });
+</script>
+
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
 </script>
 
 @yield('js')

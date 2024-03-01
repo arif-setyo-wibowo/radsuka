@@ -73,7 +73,9 @@
                                                     <td>Hasil Rontgen</td>
                                                     <td>
                                                         @foreach (explode(',', $rontgen[0]->foto_rontgen) as $image)
-                                                            <img width="150" src="{{ asset('storage/images/' . trim($image)) }}" alt="Image">
+                                                        <a href="{{ asset('storage/images/' . trim($image)) }}" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                                            <img width="150px "src="{{ asset('storage/images/' . trim($image)) }}" class="img-fluid mb-2" alt="white sample" />
+                                                        </a>
                                                         @endforeach
                                                     </td>
                                                 </tr>

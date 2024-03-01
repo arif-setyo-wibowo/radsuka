@@ -155,7 +155,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">File Pdf</label>
                                                 <input type="file" name="images[]" id="foto_rontgen"
-                                                    class="form-control" multiple required>
+                                                    class="form-control" multiple >
                                                 <span class="text-danger" id="notifPassword"></span>
                                             </div>
                                             <div class="form-group">

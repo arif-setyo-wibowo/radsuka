@@ -153,6 +153,12 @@
                                                 <span class="text-danger" id="notifPassword"></span>
                                             </div>
                                             <div class="form-group">
+                                                <label for="exampleInputEmail1">File Pdf</label>
+                                                <input type="file" name="images[]" id="foto_rontgen"
+                                                    class="form-control" multiple required>
+                                                <span class="text-danger" id="notifPassword"></span>
+                                            </div>
+                                            <div class="form-group">
                                                 <input type="submit" name="proses" id="proses" value="Tambah"
                                                     class="btn btn-primary">
                                             </div>

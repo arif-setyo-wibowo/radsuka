@@ -44,7 +44,6 @@ class RontgenController extends Controller
             }
 
             $pemeriksaan = new Pemeriksaan;
-            $pemeriksaan->idpemeriksaan = $request->idpemeriksaan;
             $pemeriksaan->idpasien = $request->idpasien;
             $pemeriksaan->tgl_pemeriksaan = $request->tgl_pemeriksaan;
             $pemeriksaan->jenis_pemeriksaan = $request->jenis_pemeriksaan;

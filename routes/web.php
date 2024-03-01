@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\RontgenController;
+use App\Http\Controllers\TestimoniController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::post('/', 'postlogin')->name('loginpasien');
+});
+Route::controller(TestimoniController::class)->group(function () {
+    Route::get('/testimoni', 'index')->name('testimoni');
+    Route::post('/testimoni', 'store')->name('testimoni.kirim');
 });
 Route::controller(LoginController::class)->prefix('login')->group(function () {
     Route::get('/', 'index')->name('login');
@@ -46,6 +51,10 @@ Route::middleware('petugas')->group(function () {
         Route::get('/', 'index')->name('admin.pasien');
         Route::post('/', 'storeUpdate')->name('admin.pasien.storeupdate');
         Route::get('/delete', 'destroy')->name('admin.pasien.delete');
+    });
+
+    Route::controller(TestimoniController::class)->group(function () {
+        Route::get('/testimoni-admin', 'admin_testimoni')->name('admin.testimoni');
     });
 
     Route::controller(RontgenController::class)->prefix('/admin/rontgen')->group(function () {
